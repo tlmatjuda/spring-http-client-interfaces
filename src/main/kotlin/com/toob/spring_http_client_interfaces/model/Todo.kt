@@ -1,8 +1,8 @@
 package com.toob.spring_http_client_interfaces.model
 
 data class Todo(
-    val userId: Int,
-    val id: Int? = null,
-    val title: String,
-    val completed: Boolean
+    var id: Int? = null,
+    var userId: Int,
+    var title: String,
+    var completed: Boolean
 )

@@ -2,20 +2,21 @@ package com.toob.spring_http_client_interfaces.service
 
 import com.toob.spring_http_client_interfaces.client.TodoClient
 import com.toob.spring_http_client_interfaces.model.Todo
-import org.springframework.stereotype.Service
+import lombok.extern.slf4j.Slf4j
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 
-@Service
-class TodoService(private val todoClient: TodoClient) {
+@Slf4j
+@SpringBootTest
+class TodoServiceTest {
 
-    fun fetchTodos(): List<Todo> = todoClient.fetchAll()
+    @Autowired
+    lateinit var todoClient: TodoClient
 
-    fun save(todo: Todo): Todo = todoClient.post( todo)
-
-    fun updateTodo(id : Int, todo: Todo): Todo = todoClient.update( id, todo)
-
-    fun delete(id : Int) = todoClient.remove( id)
-
-    fun process() {
+    @Test
+    fun `Variable Tests For This`() {
         val todo = Todo(
             userId = 1,
             title = "My New TODO",
@@ -37,7 +38,7 @@ class TodoService(private val todoClient: TodoClient) {
 
         todoClient.remove( found.id!!)
         println("ALL RECORDS PROCESSED")
-    }
 
+    }
 
 }
