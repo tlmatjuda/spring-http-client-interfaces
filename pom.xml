@@ -31,6 +31,9 @@
 		<apache-commons-lang.version>3.17.0</apache-commons-lang.version>
 		<apache-commons-collection.version>4.5.0-M2</apache-commons-collection.version>
 		<apache-commons-text.version>1.12.0</apache-commons-text.version>
+
+		<kotlin-logging.version>7.0.3</kotlin-logging.version>
+		<logback.version>1.5.16</logback.version>
 	</properties>
 
 
@@ -80,12 +83,19 @@
 			<artifactId>kotlin-stdlib</artifactId>
 		</dependency>
 
-		<!-- OTHER TOOLS -->
+		<!-- LOGGING -->
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<groupId>io.github.oshai</groupId>
+			<artifactId>kotlin-logging-jvm</artifactId>
+			<version>${kotlin-logging.version}</version>
+			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
 
 		<!-- ALL THE TESTING FUN -->
 		<dependency>
@@ -98,6 +108,18 @@
 			<artifactId>kotlin-test-junit5</artifactId>
 			<scope>test</scope>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.mockito</groupId>-->
+<!--			<artifactId>mockito-inline</artifactId>-->
+<!--			<version>5.6.0</version>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.mockito.kotlin</groupId>-->
+<!--			<artifactId>mockito-kotlin</artifactId>-->
+<!--			<version>5.1.0</version>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
 	</dependencies>
 
 	<build>
@@ -166,6 +188,19 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<argLine>
+						-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar
+						-Xshare:off
+					</argLine>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 

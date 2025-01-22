@@ -23,7 +23,4 @@ interface TodoClient {
     @PutExchange("/todos/{id}")
     fun update( @PathVariable id: Int, @RequestBody todo: Todo): Todo
 
-    @DeleteExchange("/todos/{id}")
-    fun remove( @PathVariable id: Int)
-
 }
