@@ -14,16 +14,13 @@ private const val BASE_URL = "https://jsonplaceholder.typicode.com"
 class ApplicationFactory(private val restTemplateBuilder: RestTemplateBuilder) {
 
 	@Bean
-	fun todoClient(): TodoClient {
-		val restTemplate: RestTemplate = restTemplateBuilder
-			.rootUri(BASE_URL)
-			.build()
-
-		return HttpServiceProxyFactory
-			.builderFor(RestTemplateAdapter.create(restTemplate))
+	fun todoClient(): TodoClient =
+		HttpServiceProxyFactory
+			.builderFor(RestTemplateAdapter.create(
+				restTemplateBuilder.rootUri(BASE_URL).build()
+			))
 			.build()
 			.createClient(TodoClient::class.java)
-	}
 
 }
 

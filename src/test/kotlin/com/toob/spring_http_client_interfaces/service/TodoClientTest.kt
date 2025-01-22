@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import kotlin.test.*
 
-private val log = KotlinLogging.logger {}
 
 @SpringBootTest
 class TodoClientTest @Autowired constructor(val todoClient: TodoClient) {
 
+    private val log = KotlinLogging.logger {}
 
     @Test
     fun `Fetch All Todos`() {
