@@ -16,50 +16,52 @@ class TodoClientTest @Autowired constructor(val todoClient: TodoClient) {
 
     @Test
     fun `Fetch All Todos`() {
-        val tasks = todoClient.fetchAll()
-        assertTrue { tasks.isNotEmpty() }
-        log.info{"We have found : ${tasks.size} tasks "}
+        todoClient.fetchAll().also { tasks ->
+            assertTrue(tasks.isNotEmpty(), "Tasks should not be empty")
+            log.info { "Found ${tasks.size} tasks." }
+        }
     }
 
     @Test
     fun `Find A Task By Id`() {
-        val task = todoClient.findById(2)
-        assertEquals(2, task.id!!)
-        assertFalse { task.completed }
-        log.info{"Found task : ${task.id} with title : ${task.title} "}
+        todoClient.findById(2).apply {
+            assertEquals(2, id ?: error("Task ID should not be null"))
+            assertFalse(completed)
+            log.info { "Found task: $id with title: $title" }
+        }
     }
 
     @Test
     fun `Test Posting Of A Todo`() {
-        val todo = Todo(
-            userId = 1,
-            title = "My New TODO",
-            completed = false,
-        )
+        val todo = Todo(userId = 1, title = "My New TODO", completed = false)
 
         assertNull(todo.id)
-        var savedTask = todoClient.post(todo)
 
-        assertNotNull(savedTask.id)
-        log.info{"Saved task : ${savedTask.title} and now has Id : ${savedTask.id} "}
+        todoClient.post(todo).apply {
+            assertNotNull(id)
+            log.info { "Saved task '$title' with id: $id." }
+        }
     }
 
     @Test
     fun `Update Task Info`() {
-        val task = todoClient.findById(3)
-        assertNotNull(task)
-        assertEquals("fugiat veniam minus", task.title)
-        assertFalse {  task.completed }
-        val previousTitle = task.title
+        todoClient.findById(3).apply {
+            assertNotNull(this)
+            val previousTitle = title
+            assertEquals("fugiat veniam minus", title)
+            assertFalse(completed)
 
-        task.title = "Let there be fewer pardons"
-        task.completed = true
-        val updatedTask = todoClient.update(3, task)
-        assertEquals("Let there be fewer pardons", updatedTask.title)
-        assertTrue { updatedTask.completed }
+            // Modify task
+            title = "Let there be fewer pardons"
+            completed = true
 
-        log.info { "Updated task : ${updatedTask.id}"}
-        log.info { "The title : \"${previousTitle}\" actually translates to : \"${updatedTask.title}\"" }
+            todoClient.update(3, this).apply {
+                assertEquals("Let there be fewer pardons", title)
+                assertTrue(completed)
+                log.info { "Updated task with id: $id." }
+                log.info { "Previous title '$previousTitle' updated to '$title'." }
+            }
+        }
     }
 
 }
