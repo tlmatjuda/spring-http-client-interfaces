@@ -34,7 +34,6 @@ class TodoClientTest @Autowired constructor(val todoClient: TodoClient) {
     @Test
     fun `Test Posting Of A Todo`() {
         val todo = Todo(userId = 1, title = "My New TODO", completed = false)
-
         assertNull(todo.id)
 
         todoClient.post(todo).apply {

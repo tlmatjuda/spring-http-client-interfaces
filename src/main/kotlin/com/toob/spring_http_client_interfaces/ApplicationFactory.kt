@@ -4,7 +4,6 @@ import com.toob.spring_http_client_interfaces.client.TodoClient
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.web.client.RestTemplate
 import org.springframework.web.client.support.RestTemplateAdapter
 import org.springframework.web.service.invoker.HttpServiceProxyFactory
 
