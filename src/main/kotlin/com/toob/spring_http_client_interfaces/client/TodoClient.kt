@@ -1,8 +1,8 @@
 package com.toob.spring_http_client_interfaces.client
 
 import com.toob.spring_http_client_interfaces.model.Todo
-import org.springframework.web.bind.annotation.*
-import org.springframework.web.service.annotation.DeleteExchange
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.service.annotation.GetExchange
 import org.springframework.web.service.annotation.HttpExchange
 import org.springframework.web.service.annotation.PostExchange
@@ -15,12 +15,12 @@ interface TodoClient {
     fun fetchAll(): List<Todo>
 
     @GetExchange("/todos/{id}")
-    fun findById( @PathVariable id: Int ): Todo
+    fun findById(@PathVariable id: Int): Todo
 
     @PostExchange("/todos")
-    fun post( @RequestBody todo: Todo): Todo
+    fun post(@RequestBody todo: Todo): Todo
 
     @PutExchange("/todos/{id}")
-    fun update( @PathVariable id: Int, @RequestBody todo: Todo): Todo
+    fun update(@PathVariable id: Int, @RequestBody todo: Todo): Todo
 
 }

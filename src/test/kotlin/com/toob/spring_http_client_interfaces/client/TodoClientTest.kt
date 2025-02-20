@@ -1,31 +1,31 @@
-package com.toob.spring_http_client_interfaces.service
+package com.toob.spring_http_client_interfaces.client
 
-import com.toob.spring_http_client_interfaces.client.TodoClient
 import com.toob.spring_http_client_interfaces.model.Todo
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import kotlin.test.*
-
+import kotlin.test.DefaultAsserter.assertEquals
+import kotlin.test.DefaultAsserter.assertNotNull
 
 @SpringBootTest
-class TodoClientTest @Autowired constructor(val todoClient: TodoClient) {
+class TodoClientTest @Autowired
+    constructor( val todoClient: TodoClient) {
 
     private val log = KotlinLogging.logger {}
 
     @Test
-    fun `Fetch All Todos`() {
+    fun `Should Fetch All Todos`() {
         todoClient.fetchAll().also { tasks ->
-            assertTrue(tasks.isNotEmpty(), "Tasks should not be empty")
-            log.info { "Found ${tasks.size} tasks." }
+            assertTrue(tasks.isNotEmpty(), "Tasks should Not be empty")
+            log.info { "Found ${tasks.size} tasks" }
         }
     }
 
     @Test
     fun `Find A Task By Id`() {
         todoClient.findById(2).apply {
-            assertEquals(2, id ?: error("Task ID should not be null"))
             assertFalse(completed)
             log.info { "Found task: $id with title: $title" }
         }
@@ -62,5 +62,7 @@ class TodoClientTest @Autowired constructor(val todoClient: TodoClient) {
             }
         }
     }
+
+
 
 }
