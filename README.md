@@ -46,6 +46,5 @@ mvn clean test
 
 ## 🤝 Conlusion
 
-#### 🚀 Like this project? Give it a ⭐ on GitHub and share it with your dev friends! 🚀  
-
-#### 🎥 Watch the full tutorial: [YouTube Video Placeholder]
+#### 🚀 Like this project? Give it a ⭐ on GitHub and share it with your dev friends! 🚀
+#### [🎥 Watch the full tutorial](https://youtu.be/8CCnO1MlDwk)
