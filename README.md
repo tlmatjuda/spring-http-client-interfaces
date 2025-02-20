@@ -3,6 +3,8 @@
 This project demonstrates how to use **Spring Boot 3.2 HTTP Interfaces** to make REST API calls **without manually writing HTTP client code**. <br/>
 Say goodbye to boilerplate `RestTemplate` and `WebClient` code and embrace a cleaner, more declarative approach!
 
+### [🎥 Watch the full tutorial](https://youtu.be/8CCnO1MlDwk)
+
 ---
 
 ## 📜 Features
@@ -44,4 +46,3 @@ mvn clean test
 ## 🤝 Conlusion
 
 #### 🚀 Like this project? Give it a ⭐ on GitHub and share it with your dev friends! 🚀
-#### [🎥 Watch the full tutorial](https://youtu.be/8CCnO1MlDwk)
