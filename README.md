@@ -18,7 +18,7 @@ Say goodbye to boilerplate `RestTemplate` and `WebClient` code and embrace a cle
 
 ## 🛠️ Technologies Used
 - **Kotlin** (with Java 21 support)
-- **Spring Boot 3.2**
+- **Spring Boot 3.4**
 - **Spring Web**
 - **Maven**
 - **JUnit 5** (for testing)
